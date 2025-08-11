@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Library Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <h2>LibraryMS</h2>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active" data-section="dashboard">
+                    <a href="#dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="books">
+                    <a href="#books">
+                        <i class="fas fa-book"></i>
+                        <span>Books</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="users">
+                    <a href="#users">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="borrow">
+                    <a href="#borrow">
+                        <i class="fas fa-hand-holding"></i>
+                        <span>Borrow/Return</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="search">
+                    <a href="#search">
+                        <i class="fas fa-search"></i>
+                        <span>Search Books</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="navigation">
+                    <a href="#navigation">
+                        <i class="fas fa-route"></i>
+                        <span>Shelf Navigation</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="recommendations">
+                    <a href="#recommendations">
+                        <i class="fas fa-star"></i>
+                        <span>Recommendations</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-books">0</h3>
+                        <p>Total Books</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="available-books">0</h3>
+                        <p>Available Books</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-users">0</h3>
+                        <p>Registered Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="borrowed-books">0</h3>
+                        <p>Books Borrowed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="chart-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="recent-activity">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Popular Categories</h3>
+                    <div class="category-chart" id="category-chart">
+                        <!-- Category chart will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Section -->
+        <section id="books" class="content-section">
+            <div class="section-header">
+                <h2>Books Management</h2>
+                <button class="btn btn-primary" onclick="showAddBookModal()">
+                    <i class="fas fa-plus"></i> Add Book
+                </button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ISBN</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Shelf</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="books-table">
+                        <!-- Books will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section id="users" class="content-section">
+            <div class="section-header">
+                <h2>Users Management</h2>
+                <button class="btn btn-primary" onclick="showAddUserModal()">
+                    <i class="fas fa-plus"></i> Add User
+                </button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Books Borrowed</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table">
+                        <!-- Users will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search" class="content-section">
+            <div class="search-container">
+                <h2>Search Books</h2>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Enter book title to search...">
+                    <button class="btn btn-primary" onclick="searchBooks()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <!-- Search results will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Borrow/Return Section -->
+        <section id="borrow" class="content-section">
+            <div class="borrow-return-container">
+                <div class="operation-card">
+                    <h3>Borrow Book</h3>
+                    <div class="form-group">
+                        <label>User Name:</label>
+                        <input type="text" id="borrow-user" placeholder="Enter user name">
+                    </div>
+                    <div class="form-group">
+                        <label>ISBN:</label>
+                        <input type="text" id="borrow-isbn" placeholder="Enter book ISBN">
+                    </div>
+                    <button class="btn btn-primary" onclick="borrowBook()">
+                        <i class="fas fa-hand-holding"></i> Borrow Book
+                    </button>
+                </div>
+
+                <div class="operation-card">
+                    <h3>Return Book</h3>
+                    <div class="form-group">
+                        <label>ISBN:</label>
+                        <input type="text" id="return-isbn" placeholder="Enter book ISBN">
+                    </div>
+                    <button class="btn btn-success" onclick="returnBook()">
+                        <i class="fas fa-undo"></i> Return Book
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Section -->
+        <section id="navigation" class="content-section">
+            <div class="navigation-container">
+                <h2>Shelf Navigation</h2>
+                <div class="path-finder">
+                    <div class="form-group">
+                        <label>From Shelf:</label>
+                        <input type="text" id="start-shelf" placeholder="e.g., Shelf-1">
+                    </div>
+                    <div class="form-group">
+                        <label>To Shelf:</label>
+                        <input type="text" id="end-shelf" placeholder="e.g., Shelf-3">
+                    </div>
+                    <button class="btn btn-primary" onclick="findPath()">
+                        <i class="fas fa-route"></i> Find Path
+                    </button>
+                </div>
+                <div class="path-result" id="path-result">
+                    <!-- Path result will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section id="recommendations" class="content-section">
+            <div class="recommendations-container">
+                <h2>Book Recommendations</h2>
+                <div class="form-group">
+                    <label>User Name:</label>
+                    <input type="text" id="recommend-user" placeholder="Enter user name">
+                    <button class="btn btn-primary" onclick="getRecommendations()">
+                        <i class="fas fa-star"></i> Get Recommendations
+                    </button>
+                </div>
+                <div class="recommendations-list" id="recommendations-list">
+                    <!-- Recommendations will be displayed here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="add-book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('add-book-modal')">&times;</span>
+            <h2>Add New Book</h2>
+            <form id="add-book-form">
+                <div class="form-group">
+                    <label>ISBN:</label>
+                    <input type="text" id="new-isbn" required>
+                </div>
+                <div class="form-group">
+                    <label>Title:</label>
+                    <input type="text" id="new-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Author:</label>
+                    <input type="text" id="new-author" required>
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <input type="text" id="new-category" required>
+                </div>
+                <div class="form-group">
+                    <label>Shelf:</label>
+                    <input type="text" id="new-shelf" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-user-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('add-user-modal')">&times;</span>
+            <h2>Add New User</h2>
+            <form id="add-user-form">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="new-user-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="text" id="new-user-phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

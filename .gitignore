@@ -46,3 +46,8 @@ node_modules/
 # Environment files
 .env
 .env.local
+
+# Keep frontend assets in root for GitHub Pages
+!css/
+!js/
+!*.html

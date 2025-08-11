@@ -1,0 +1,7 @@
+theme: jekyll-theme-minimal
+title: University Library Management System
+description: A comprehensive Java-based library management system with modern web interface
+show_downloads: true
+google_analytics: 
+plugins:
+  - jekyll-sitemap
