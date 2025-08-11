@@ -39,3 +39,10 @@ replay_pid*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Node modules (if using any build tools)
+node_modules/
+
+# Environment files
+.env
+.env.local
